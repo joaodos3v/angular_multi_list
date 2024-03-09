@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './filter-list.component.html',
 })
-export class FilterListComponent {}
+export class FilterListComponent {
+  sorters: string[] = ['Sort by name - ASC', 'Sort by name - DESC'];
+}
