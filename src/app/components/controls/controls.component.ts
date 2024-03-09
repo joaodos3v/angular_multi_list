@@ -1,11 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FilterListComponent } from '../filter-list/filter-list.component';
 import { SOURCE_PROVIDER } from '../../providers/services/source-service.provider';
 
 @Component({
   selector: 'app-controls',
   standalone: true,
-  imports: [FilterListComponent],
+  imports: [],
   templateUrl: './controls.component.html',
 })
 export class ControlsComponent implements OnInit {
