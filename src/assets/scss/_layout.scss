@@ -1,0 +1,17 @@
+.app-header {
+  height: $header-height;
+  @apply bg-white shadow py-5 fixed top-0 left-0 w-full z-20;
+  @apply flex items-center justify-center;
+}
+
+.app-wrapper {
+  height: calc(100vh - $header-height);
+  top: $header-height;
+  @apply relative overflow-y-auto;
+  @apply flex justify-center;
+}
+
+.app-slide-panel {
+  height: calc(100vh - $header-height);
+  @apply relative overflow-y-auto;
+}
