@@ -1,0 +1,9 @@
+<section class="w-full pt-4 pb-8">
+  <div class="flex items-center gap-4">
+    @for (item of ['10 mais recentes', '10 últimos', 'Randomizar']; track $index) {
+    <button class="btn-sm btn-rounded-md btn-outline-primary">
+      {{ item }}
+    </button>
+    }
+  </div>
+</section>
