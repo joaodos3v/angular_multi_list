@@ -1,5 +1,5 @@
 <section class="w-full grid grid-cols-3 gap-8">
-  @for (item of [1,2,3,4,5,6,7]; track $index) {
-  <app-card class="flex-1" />
+  @for (item of items; track $index) {
+  <app-card [title]="item.name" [description]="item.description" [imageURL]="item.imageURL" class="flex-1" />
   }
 </section>
