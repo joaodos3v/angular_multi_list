@@ -17,6 +17,10 @@ body {
     @apply inline-flex items-center gap-2;
   }
 
+  .btn-rounded-md {
+    @apply rounded-md;
+  }
+
   .btn-rounded {
     @apply rounded-full;
   }
