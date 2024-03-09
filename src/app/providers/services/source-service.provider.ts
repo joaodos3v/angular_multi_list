@@ -1,7 +1,9 @@
 import { InjectionToken } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 export interface Source {
-  changeSource(usePokeAPI: boolean): void;
+  usePokeAPI: BehaviorSubject<boolean>;
+  toggleUsePokeAPI(usePokeAPI: boolean): void;
 }
 
 export const SOURCE_PROVIDER = new InjectionToken<Source>('SOURCE_PROVIDER');
