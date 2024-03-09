@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Item } from '../../../../domain/models/item.model';
@@ -7,10 +7,12 @@ import { CharacterResponse } from '../interfaces/character-response.interface';
 
 @Injectable()
 export class NarutoAPIItemsRepository implements ItemsRepository {
+  http: HttpClient = inject(HttpClient);
+
   url: string = 'https://narutodb.xyz/api/character';
   items: Item[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   getById(): Promise<Item[]> {
     throw new Error('Method not implemented.');

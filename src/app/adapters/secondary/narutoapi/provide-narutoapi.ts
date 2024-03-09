@@ -1,5 +1,4 @@
 import { ITEMS_REPOSITORY_PROVIDER } from '../../../providers/repositories/items-repository.provider';
-import { LIST_PROVIDER } from '../../../providers/services/list-service.provider';
 import { NarutoAPIItemsRepository } from './repositories/narutoapi-items.repository';
 
 export const provideNarutoAPIItemsRepository = () => [
