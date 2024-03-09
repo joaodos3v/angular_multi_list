@@ -5,8 +5,5 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './toggle.component.html',
-  styleUrl: './toggle.component.scss'
 })
-export class ToggleComponent {
-
-}
+export class ToggleComponent {}
