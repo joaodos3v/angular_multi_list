@@ -1,4 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { SOURCE_PROVIDER } from '../../providers/services/source-service.provider';
 
 @Component({
@@ -7,20 +8,28 @@ import { SOURCE_PROVIDER } from '../../providers/services/source-service.provide
   imports: [],
   templateUrl: './controls.component.html',
 })
-export class ControlsComponent implements OnInit {
+export class ControlsComponent implements OnInit, OnDestroy {
   sourceService = inject(SOURCE_PROVIDER);
 
   title: string = '';
   shouldUsePokeAPI: boolean = false;
+
+  subs: Subscription[] = [];
 
   ngOnInit(): void {
     this.getUsePokeAPIValue();
   }
 
   getUsePokeAPIValue() {
-    this.sourceService.usePokeAPI.subscribe((shouldUse) => {
+    const sub = this.sourceService.usePokeAPI.subscribe((shouldUse) => {
       this.shouldUsePokeAPI = shouldUse;
       this.title = this.shouldUsePokeAPI ? 'PokéAPI' : 'NarutoDB';
     });
+
+    this.subs.push(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach((sub) => sub.unsubscribe());
   }
 }
