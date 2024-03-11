@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { Observable, catchError, map, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Item } from '../../../../domain/models/item.model';
 import { ItemsRepository } from '../../../../providers/repositories/items-repository.provider';
@@ -18,14 +18,21 @@ export class NarutoAPIItemsRepository implements ItemsRepository {
     throw new Error('Method not implemented.');
   }
 
-  async getItems(limit: number): Promise<Item[]> {
-    const response = await firstValueFrom(this.http.get<CharacterResponse>(this.url));
-
-    return response.characters.map((char) => ({
-      id: char.id,
-      name: char.name,
-      description: char.uniqueTraits?.join('; '),
-      imageURL: char.images.pop() || '',
-    }));
+  getItems(limit: number): Observable<Item[]> {
+    return this.http.get<CharacterResponse>(this.url).pipe(
+      map((response) => {
+        return response.characters.map((char) => ({
+          id: char.id,
+          name: char.name,
+          description: char.uniqueTraits?.join('; '),
+          imageURL: char.images.pop() || '',
+        }));
+      }),
+      tap((result) => console.log(result)),
+      catchError((err) => {
+        // Poderia tratar para um erro "de acordo com as regras da minha app"
+        throw new Error(err);
+      })
+    );
   }
 }

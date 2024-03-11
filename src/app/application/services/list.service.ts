@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
 import { Item } from '../../domain/models/item.model';
 import { List } from '../../providers/services/list-service.provider';
@@ -7,11 +8,7 @@ import { ITEMS_REPOSITORY_PROVIDER } from '../../providers/repositories/items-re
 export class ListService implements List {
   itemsRepository = inject(ITEMS_REPOSITORY_PROVIDER);
 
-  async getItems(offset: number = 0, limit: number = 50): Promise<Item[]> {
-    return await this.itemsRepository.getItems(offset, limit);
-  }
-
-  random(): void {
-    throw new Error('Method not implemented.');
+  getItems(offset: number = 0, limit: number = 50): Observable<Item[]> {
+    return this.itemsRepository.getItems(offset, limit);
   }
 }

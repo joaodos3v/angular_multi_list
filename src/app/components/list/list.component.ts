@@ -18,7 +18,9 @@ export class ListComponent implements OnInit {
     this.getInitialItems();
   }
 
-  async getInitialItems() {
-    this.items = await this.listService.getItems();
+  getInitialItems() {
+    this.listService.getItems().subscribe((items) => {
+      this.items = items;
+    });
   }
 }
